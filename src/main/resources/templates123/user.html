@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>My info</title>
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div style="background:#333333" class="container-fluid">
+        <div class="navbar-header">
+            <a style="color: white" class="navbar-brand" th:text="${user.getUsername() + ' with roles : ' + user.getAuthorities()}">VALUE</a>
+        </div>
+        <div class="text-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a style="color: grey" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <nav class="navbar navbar-default row rowBg">
+                <div style="background:dodgerblue" class="container-fluid">
+                    <div class="navbar-header">
+                        <a style="color: white" class="navbar-brand" th:text="${user.getUsername()}">VALUE</a>
+                    </div>
+                </div>
+            </nav>
+<!--            <p style="background:dodgerblue" class="" th:text="${user.getUsername()}">VALUE</p>-->
+        </div>
+        <div class="col-md-10">
+            <h1 class="align-items-center">User information-page</h1>
+            <table class="table">
+                <thead>
+                <tr><td class="text-center" >Username</td><td class="text-center" >Name</td>
+                    <td class="text-center">Age</td><td class="text-center">Password</td><td class="text-center">Role</td></tr>
+                </thead>
+                <tbody>
+                <tr><th class="text-center" th:text="${user.getUsername()}">VALUE</th>
+                    <th class="text-center" th:text="${user.getName()}">VALUE</th><th class="text-center" th:text="${user.getAge()}">VALUE</th>
+                    <th class="text-center" th:text="${user.getPassword()}">VALUE</th><th class="text-center" th:text="${user.authorities}">VALUE</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--<br/>-->
+<!--<p th:text="${'username : ' + user.getUsername()}">VALUE</p>-->
+<!--<p th:text="${'name : ' + user.getName()}">VALUE</p>-->
+<!--<p th:text="${'age : ' + user.getAge()}">VALUE</p>-->
+<!--<p th:text="${'id : ' + user.getId()}">VALUE</p>-->
+</body>
+</html>

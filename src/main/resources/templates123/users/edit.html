@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div style="background:#333333" class="container-fluid">
+        <div class="navbar-header">
+            <a style="color: white" class="navbar-brand" th:href="@{/admin}"
+               th:text="${info.getUsername() + ' with roles : ' + info.getAuthorities()}">VALUE</a>
+        </div>
+        <div class="text-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a style="color: grey" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+<form th:method="PATCH" th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}">
+    <table class="table table-striped">
+        <caption><h4><label class="text-uppercase" style="color: black" th:text="${user.username}">VALUE</label></h4> </caption>
+        <tr><th>
+            <label for="username">Enter username:</label>
+            <input type="text" th:field="*{username}" id="username"/>
+            <br/></th><th>
+            <label for="name">Enter name:</label>
+            <input type="text" th:field="*{name}" id="name"/>
+            <br/></th><th>
+            <label for="age">Enter age:</label>
+            <input type="number" th:field="*{age}" id="age"/>
+            <br/></th><th>
+            <label for="password">Enter password:</label>
+            <input type="password" th:field="*{password}" id="password"/>
+            <br/></th><th>
+            <label>Enter role</label>
+            <select name="roles" class="form-select" required multiple size="2">
+                <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.roleName}"></option>
+            </select></th></tr></table>
+    <input class="btn btn-info" type="submit" value="Update"/>
+</form></div>
+</body>
+</html>

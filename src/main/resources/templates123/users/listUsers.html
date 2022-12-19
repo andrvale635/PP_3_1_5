@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div style="background:#333333" class="container-fluid">
+        <div class="navbar-header">
+            <a style="color: white" class="navbar-brand" th:href="@{/admin}"
+               th:text="${info.getUsername() + ' with roles : ' + info.getAuthorities()}">VALUE</a>
+        </div>
+        <div class="text-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a style="color: grey" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div th:each="user : ${users}">
+                <h4>
+                <a class="text-uppercase" th:href="@{/admin/users/{id}(id=${user.getId()})}"
+                   th:text="${user.getUsername()}">user</a></h4>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <h1>Admin panel</h1>
+            <div>
+            <table class="table table-striped table-hover caption-top">
+                <caption style="color: black"><h4>All users</h4></caption>
+                <thead>
+                <tr><th class="text-center" >Username</th><th class="text-center" >Name</th>
+                    <th class="text-center">Age</th><th class="text-center">Password</th><th class="text-center">Role</th><th></th><th></th></tr>
+                </thead>
+                <tbody>
+                    <div th:each="user : ${users}">
+                    <tr><td class="text-center" th:text="${user.getUsername()}">VALUE</td>
+                        <td class="text-center" th:text="${user.getName()}">VALUE</td><td class="text-center" th:text="${user.getAge()}">VALUE</td>
+                        <td class="text-center" th:text="${user.getPassword()}">VALUE</td><td class="text-center" th:text="${user.authorities}">VALUE</td>
+                    <td class="text-center"> <form th:method="GET" th:action="@{/admin/users/{id}/edit(id=${user.getId()})}">
+                        <input type="submit" class="btn btn-info" value="Edit">
+                    </form></td>
+                        <td class="text-center"> <form th:method="DELETE" th:action="@{/admin/users/{id}(id=${user.getId()})}">
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                        </form></td></tr>
+                        </div>
+                </tbody>
+            </table></div>
+            <form method="GET" th:action="@{/admin/users/new}">
+                <input type="submit" class="btn btn-success" value="Create new user">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
