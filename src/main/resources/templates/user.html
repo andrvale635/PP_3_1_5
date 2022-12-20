@@ -21,9 +21,9 @@
         <div class="col-11 text-left">
             <ul class="list-inline h5">
                 <li class="list-inline-item text-white text-strong navbar-brand"
-                    th:utext="${info.getUsername()}"></li>
+                    th:utext="${#authentication.name}"></li>
                 <li class="list-inline-item text-white navbar-brand">with roles:</li>
-                <li class="list-inline-item text-white navbar-brand" th:utext="${info.getAuthorities()}">
+                <li class="list-inline-item text-white navbar-brand" th:utext="${#authentication.authorities}">
                     <strong></strong></li>
             </ul>
         </div>
