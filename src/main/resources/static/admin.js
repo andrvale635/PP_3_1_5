@@ -112,7 +112,6 @@ function rolesUser(event) {
 document.getElementById('newUser').addEventListener('submit', addNewUser);
 
 function addNewUser(e) {
-    // e.preventDefault();
     let newUserForm = new FormData(e.target);
     let user = {};
     newUserForm.forEach((value, key) => user[key] = value);
@@ -132,7 +131,7 @@ function addNewUser(e) {
     );
     e.target.reset();
     const triggerEl = document.querySelector('#v-pills-tabContent button[data-bs-target="#nav-home"]')
-    bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+    bootstrap.Tab.getInstance(triggerEl).show()
 }
 
 
