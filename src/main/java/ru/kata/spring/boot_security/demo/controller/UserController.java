@@ -22,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+
     private final UserService userService;
     private final RoleRepository roleRepository;
 
@@ -45,13 +46,11 @@ public class UserController {
         return ResponseEntity.ok(userService.showUserById(id));
     }
 
-
     @PostMapping
     public ResponseEntity<User> createNewUser(@RequestBody User user) {
         userService.save(user);
         return ResponseEntity.ok(user);
     }
-
 
     @PutMapping()
     public ResponseEntity<?> update(@RequestBody User user) {
